@@ -3,6 +3,10 @@ const express = require('express');
 
 const app = express();
 
+//Routs
+app.get('/', (req, res) => {  
+    res.send("Hello, world!!!");
+});
 
 
 app.listen(8000, () => {
