@@ -2,7 +2,13 @@
 require('dotenv').config();
 const express = require('express');
 
+
+// Importing workout routes from routes folder
+const workoutRoutes = require('./routes/workouts');
+
+
 const app = express();
+
 
 // Middleware
 app.use((req, res, next) => {
@@ -11,9 +17,17 @@ app.use((req, res, next) => {
 });
 
 //Routs
-app.get('/', (req, res) => {  
-    res.send("Hello, world!!!");
-});
+// app.get('/', (req, res) => {  
+//     res.send("Hello, world!!!");
+// });
+
+// http://localhost:8000/api/workouts           ->      http://localhost:8000/
+// http://localhost:8000/api/workouts/hello     ->      http://localhost:8000/hello
+// Real API's we have to type in browser        ->      Normal API's called in 'routes/workouts.js'
+
+
+// Divering apis getting from browser to required routes file i.e 'routes/workoutroutes.js'
+app.use('/api/workouts', workoutRoutes);
 
 
 app.listen(process.env.PORT, () => {
