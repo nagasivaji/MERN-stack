@@ -1,6 +1,10 @@
 // Import required modules
 require('dotenv').config();
 const express = require('express');
+const mongoose = require('mongoose');
+
+// Importing Mongoose Models
+const Workout = require('./models/WorkoutModel');
 
 
 // Importing workout routes from routes folder
@@ -31,6 +35,11 @@ app.use((req, res, next) => {
 app.use('/api/workouts', workoutRoutes);
 
 
+
+
+// Listen for request
 app.listen(process.env.PORT, () => {
     console.log('Listening on port '+process.env.PORT+'!');
+
 });
+
