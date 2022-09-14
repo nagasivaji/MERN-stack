@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 // Create and connecting to the database
 mongoose.connect("mongodb://localhost:27017/WorkoutsDB", { useNewUrlParser: true });
 
-// Modeling the collection 
+// Modeling ....
 const workoutSchema = new mongoose.Schema({
     title:{
         type: String,
@@ -21,8 +21,8 @@ const workoutSchema = new mongoose.Schema({
 }, {timestamps: true});
 
 
-// Creating collection Object
+// Creating Object for the model
 const Workout = mongoose.model('Workout', workoutSchema);
 
-// Exporting this collection
+// Exporting this model
 module.exports  = Workout;

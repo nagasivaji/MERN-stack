@@ -1,10 +1,8 @@
 // Import required modules
 require('dotenv').config();
 const express = require('express');
+const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
-
-// Importing Mongoose Models
-const Workout = require('./models/WorkoutModel');
 
 
 // Importing workout routes from routes folder
@@ -12,6 +10,9 @@ const workoutRoutes = require('./routes/workouts');
 
 
 const app = express();
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // Middleware
@@ -30,6 +31,9 @@ app.use((req, res, next) => {
 // http://localhost:8000/api/workouts/hello     ->      http://localhost:8000/hello
 // Real API's we have to type in browser        ->      Normal API's called in 'routes/workouts.js'
 
+
+// Importing Mongoose Models
+const Workout = require('./models/WorkoutModel');
 
 // Divering apis getting from browser to required routes file i.e 'routes/workoutroutes.js'
 app.use('/api/workouts', workoutRoutes);
