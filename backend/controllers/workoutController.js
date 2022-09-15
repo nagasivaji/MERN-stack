@@ -20,7 +20,10 @@ const getAllWorkoutes = async (req, res) => {
 const getWorkout = async (req, res) => {
     const id = req.params.id;
     await Workout.find({_id:id}).then((workout)=>{
-        console.log("Workout : ", workout);
+        if(workout.length === 0)
+            console.log("No workout found");
+        else
+            console.log("Workout : ", workout);
     }).catch((err)=>{
         console.log("Error while getting workout:", err);
     });
@@ -51,7 +54,34 @@ const createWorkout = async (req, res) => {
 
 // delete a single workout
 
+const deleteWorkout = async (req, res) =>{
+    const id = req.params.id;
+    
+    await Workout.deleteOne({_id:id}).then((data)=>{
+        console.log(data);
+    }).catch((err)=>{
+        console.log(err);
+    });
+
+    res.send("Deleted workout");
+
+   
+};
+
 // update a single workout
+const updateWorkout = async(req, res) => {
+    const id = req.params.id;
+    const {title, reps, load} = req.query;
+
+    // console.log(id);
+    // console.log(req.query);
+    Workout.updateOne({_id:id}, {title:title, reps:reps, load:load}).then((data) =>{
+        console.log(data);
+    }).catch((err) =>{
+        console.log(err);
+    });
+
+};
 
 
 
@@ -59,5 +89,7 @@ const createWorkout = async (req, res) => {
 module.exports = {
     createWorkout,
     getAllWorkoutes,
-    getWorkout
+    getWorkout,
+    deleteWorkout,
+    updateWorkout
 }
