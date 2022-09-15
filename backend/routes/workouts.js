@@ -1,7 +1,14 @@
 const express = require('express');
 
 // Importing Mongoose Models
-const Workout = require('../models/WorkoutModel');
+// const Workout = require('../models/WorkoutModel');
+
+// Importing Mongoose Models from workoutController
+const {
+    createWorkout,
+    getAllWorkoutes,
+    getWorkout
+} = require('./../controllers/workoutController');
 
 const router = express.Router();
 
@@ -14,36 +21,15 @@ const router = express.Router();
 // });
 
 // Get all workouts
-router.get('/', (req,res)=>{
-    res.send("Get All Workouts");
-});
+router.get('/', getAllWorkoutes);
 
 
 // Get a single workout
-router.get('/:id', (req,res)=>{
-    res.send("Get Single Workout");
-});
+router.get('/:id', getWorkout);
 
 
 // post a new Workout
-router.post('/', async (req,res)=>{
-    const {title, reps, load} = req.query;
-
-    try{
-        const workout = new Workout({
-            title: title,
-            reps: reps,
-            load: load
-        });
-
-        const response = await workout.save();
-        console.log("Workout saved");
-    }catch(err){
-        console.log("Error while saving workout");
-    };
-
-    res.send("Posted a new Workout");
-});
+router.post('/', createWorkout);
 
 
 
