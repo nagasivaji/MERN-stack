@@ -1,0 +1,5 @@
+# For creating database : https://www.mongodb.com/docs/atlas/
+# DB name : MERNapp
+# username : nagasivaji
+# password : nagasivaji
+
