@@ -1,0 +1,37 @@
+
+fetch("studentData.json").then((response) => {
+    console.log("Fetcing student data from server is successful");
+    console.log(response);
+    return response.json();
+}).then((data) => {
+    console.log("Fetced student data from server is:");
+    console.log(data);
+}).catch((err) => {
+    console.log("error while fetching studentData.json");
+    console.log(err);
+});
+
+
+
+
+
+
+
+
+
+// ~~~~~~~~~~~~~~~~~~ NOTES ~~~~~~~~~~~~~~~~ //
+
+/*
+
+    fetch is a modern way to fetch data ot make api calls easyer than what we are using previously.
+    
+    They will implement promises internally.
+
+    They will return a failure promise only when the network is not available to make an API call.
+
+    They will return a successful promise when the network is available to make an API call.
+
+    Based on response code from server, we will get to know if the server sent a successful response or not..........
+
+
+*/

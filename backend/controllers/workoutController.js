@@ -6,37 +6,41 @@ const Workout = require('../models/WorkoutModel');
 const getAllWorkoutes = async (req, res) => {
 
     await Workout.find().then((data) => {
-        console.log("All Workots : ", data);
-        //res.send(data);
+        console.log("All Workots : ",data);
+        res.send(data);
     }).catch((err)=>{
         console.log("Error while getting all workouts:");
+        res.send(err)
     });
-
-    res.send("Got all workouts from DB");
 };
 
 
-// get single workout
 
+// get single workout
 const getWorkout = async (req, res) => {
     const id = req.params.id;
+
     await Workout.find({_id:id}).then((workout)=>{
         if(workout.length === 0)
             console.log("No workout found");
         else
             console.log("Workout : ", workout);
+        
+        res.send(workout);
     }).catch((err)=>{
         console.log("Error while getting workout:", err);
+        res.send(err);
     });
-
-    res.send("Got a workout from DB");
 };
+
 
 
 // create a new workout
 const createWorkout = async (req, res) => {
+    //console.log("IN POST request");  
+    //console.log(req.body);       
 
-    const {title, reps, load} = req.query;
+    const {title, reps, load} = req.body;
 
     const workout = new Workout({
         title: title,
@@ -46,15 +50,16 @@ const createWorkout = async (req, res) => {
 
     await workout.save().then((data) =>{
         console.log("Workout saved successfully:",data);
+        res.send(data);
     }).catch((err)=>{
         console.log("Error while saving workout:", err);
+        res.send(err.message);
     });
-
-    res.send("Posted a new Workout");
 };
 
-// delete a single workout
 
+
+// delete a single workout
 const deleteWorkout = async (req, res) =>{
     const id = req.params.id;
     
@@ -65,14 +70,14 @@ const deleteWorkout = async (req, res) =>{
     });
 
     res.send("Deleted workout");
-
-   
 };
+
+
 
 // update a single workout
 const updateWorkout = async(req, res) => {
     const id = req.params.id;
-    const {title, reps, load} = req.query;
+    const {title, reps, load} = req.body;
 
     // console.log(id);
     // console.log(req.query);

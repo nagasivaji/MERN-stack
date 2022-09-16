@@ -1,18 +1,28 @@
 // imporing Hooks 
 import { useEffect, useState } from 'react';
 
+//Importing Components
+import WorkoutDetails  from './../components/WorkoutDetails'
+import WorkoutForm from './../components/WorkoutForm';
 
 function Home(){
+
+    // Use State
+    const [workouts, setWorkouts] = useState(null);
 
     // Use Effect for fetching data from the server
     useEffect(()=>{
         const fetchWorkouts = async () => {
-            await fetch('/api/workouts')
-            .then((data)=>{
-                console.log("Data: ",data);
+            await fetch('api/workouts')
+            .then((response)=>{
+                console.log("Response received from Server");
+                return response.json();
+            }).then((data)=>{
+                console.log("JSON data :", data);
+                setWorkouts(data);
             })
             .catch((err)=>{
-                console.log("Error :",err);
+                console.log("Error while fetching data:",err);
             });
         };
 
@@ -20,7 +30,18 @@ function Home(){
     }, []);
 
     return(
-        <h1>Home page</h1>
+        <div className='home'>
+            <div className="workoutes">
+                {workouts && workouts.map((workout) =>(
+                    <WorkoutDetails 
+                    
+                    key={workout._id}
+                    workout={workout}
+                    />
+                ))}
+            </div>
+            <WorkoutForm />
+        </div>
     );
 }
 
