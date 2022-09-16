@@ -7,6 +7,7 @@ const getAllWorkoutes = async (req, res) => {
 
     await Workout.find().then((data) => {
         console.log("All Workots : ", data);
+        //res.send(data);
     }).catch((err)=>{
         console.log("Error while getting all workouts:");
     });
