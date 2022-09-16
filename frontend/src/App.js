@@ -1,7 +1,18 @@
+// Importing module which is responsible react routing
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+
+// Importing Component Pages from Pages folder
+import Home from './pages/Home';
 
 function App() {
     return (
-        <h1>Hello</h1>
+        <BrowserRouter>
+            <div className='pages'>
+                <Routes>
+                    <Route path="/" element={<Home /> } />
+                </Routes>
+            </div>
+        </BrowserRouter>
     );
 }
 

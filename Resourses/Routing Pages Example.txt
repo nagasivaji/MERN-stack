@@ -1,0 +1,68 @@
+// Importing required Components
+import NavBar from "./NavBar";
+import Home from "./Home";
+import AddNote from "./AddNote";
+import Contact from "./Contact";
+import Profile from "./Profile";
+import Logout from "./Logout";
+
+// Importing module which is responsible react routing
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+
+/*
+    #BrowserRouter  :   Used to make our react app routable when we click some links
+                        'BrowserRouter' is always placed in app component.
+                        Entaire App Component is wraped in 'BrowserRouter' so that out whole app will use this 'BrowserRouter',
+                        on any component of the app. Because every component of react app is a child component of App Component.
+    
+    #Routes & Route :   They are like '<ul></ul>' and '<li></li>' tags.
+                        All Route's are must be placed inside the Routes
+
+*/
+
+function App() {
+    return (
+        <BrowserRouter>
+            <div>
+                {/* <NavBar />
+                <Routes>
+                    <Route path="/" element={<Home />} /> 
+                    <Route path="/addnote" element={<AddNote />} /> 
+                    <Route path="/contact" element={<Contact />} /> 
+                    <Route path="/profile" element={<Profile />} /> 
+                    <Route path="/logout" element={<Logout />} /> 
+                </Routes>  */}
+
+                <Routes>
+                    <Route path="/" element={
+                        <div>
+                            <NavBar />
+                            <Home />
+                        </div>
+                    } /> 
+                    <Route path="/addnote" element={
+                        <div>
+                            <NavBar />
+                            <AddNote />
+                        </div>
+                    } /> 
+                    <Route path="/contact" element={
+                        <div>
+                            <NavBar />
+                            <Contact />
+                        </div>
+                    } /> 
+                    <Route path="/profile" element={
+                        <div>
+                            <NavBar />
+                            <Profile />
+                        </div>
+                    } /> 
+                    <Route path="/logout" element={<Logout />} /> 
+                </Routes>
+            </div>
+        </BrowserRouter>
+    );
+}
+
+export default App;
