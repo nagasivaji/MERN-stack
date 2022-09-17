@@ -5,7 +5,7 @@ const Workout = require('../models/WorkoutModel');
 // get all workouts
 const getAllWorkoutes = async (req, res) => {
 
-    await Workout.find().then((data) => {
+    await Workout.find().sort({createdAt: -1}).then((data) => {
         console.log("All Workots : ",data);
         res.send(data);
     }).catch((err)=>{

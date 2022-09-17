@@ -43,6 +43,7 @@ function Home(){
                     
                     key={workout._id}
                     workout={workout}
+                    refresh = {handleRefresh}
                     />
                 ))}
             </div>
