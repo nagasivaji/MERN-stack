@@ -9,6 +9,7 @@ function Home(){
 
     // Use State
     const [workouts, setWorkouts] = useState(null);
+    const [refresh, setRefresh] = useState(true);
 
     // Use Effect for fetching data from the server
     useEffect(()=>{
@@ -27,7 +28,12 @@ function Home(){
         };
 
         fetchWorkouts();
-    }, []);
+    }, [refresh]);
+
+
+    function handleRefresh(){
+        setRefresh(!refresh);
+    }
 
     return(
         <div className='home'>
@@ -40,7 +46,9 @@ function Home(){
                     />
                 ))}
             </div>
-            <WorkoutForm />
+            <WorkoutForm
+                refresh = {handleRefresh}
+            />
         </div>
     );
 }

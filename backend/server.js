@@ -35,7 +35,7 @@ app.use((req, res, next) => {
 // Importing Mongoose Models
 const Workout = require('./models/WorkoutModel');
 
-// Divering apis getting from browser to required routes file i.e 'routes/workoutroutes.js'
+// Diverting apis getting from browser to required routes file i.e 'routes/workoutroutes.js'
 app.use('/api/workouts', workoutRoutes);
 
 

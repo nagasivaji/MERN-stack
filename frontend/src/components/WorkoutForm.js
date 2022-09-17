@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function WorkoutForm(){
+function WorkoutForm(props){
 
     // useState for form data
 
@@ -39,6 +39,10 @@ function WorkoutForm(){
             console.log("Error:", err);
             setError("Error while adding new Workout");
         });
+
+        // Reset form data to show in home page
+        //console.log(props);
+        props.refresh();
     }
 
     return(
